@@ -1,13 +1,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ page session="false" %>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-<h1>
-	Hello world!  
-</h1>
+
+<div class=loginStatus>
+	<security:authorize access="isAuthenticated()">
+		<a href="<c:url value="/logout" />" >Odhlasit</a>        	
+	</security:authorize>
+    	
+	<security:authorize access="isAnonymous()">
+		<a href="<c:url value="/login" />" >Prihlasit</a> 	
+	</security:authorize>
+</div>
+
+<a href='<c:url value="/tajny" />'>Tajny controller</a>
+<br>
+<a href='<c:url value="/tajny/admin" />'>Tajny controller - admin</a>
+<br>
 
 <p> Jmeno role 1: <strong>${role.name}</strong>. </p>
 
@@ -30,6 +38,3 @@
 	</table>
 	<a href='<c:url value="/role/all" />'>JSON vsech roli</a>
 </div>
-
-</body>
-</html>

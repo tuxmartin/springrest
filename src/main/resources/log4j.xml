@@ -12,24 +12,28 @@
 	
 	<!-- Application Loggers -->
 	<logger name="eu.vancl.martin.springrest">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
+		<level value="debug" />
+	</logger>
+	
+	<logger name="org.springframework.security">
+		<level value="debug" />
 	</logger>
 
 	<!-- Root Logger -->

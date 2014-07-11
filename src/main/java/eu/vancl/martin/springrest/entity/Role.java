@@ -1,8 +1,9 @@
 package eu.vancl.martin.springrest.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.List;
 
+import javax.persistence.*;
 
 @Entity
 @Table(name="ROLES")
@@ -14,7 +15,11 @@ public class Role implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name="name")
 	private String name;
+	
+	@OneToMany(mappedBy = "role")
+	private List<User> uzivatele;
 
 	public Role() {
 	}
@@ -34,10 +39,14 @@ public class Role implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	@Override
-	public String toString() {
-		return "Role [id=" + id + ", name=" + name + "]";
-	}	
+	
+	public List<User> getUzivatele() {
+		return uzivatele;
+	}
+	
+	public void setUzivatele(List<User> uzivatele) {
+		this.uzivatele = uzivatele;
+	}
+	
 
 }
