@@ -1,4 +1,4 @@
 springrest
 ==========
 
-Spring + Hibernate + Derby - REST API
+Spring + Hibernate + Derby + Spring Security - REST API
