@@ -46,4 +46,5 @@ public class UserDaoImpl implements UserDao {
                 .createQuery("FROM User WHERE username = :username")
                 .setString("username", username).uniqueResult();
     }
+	
 }

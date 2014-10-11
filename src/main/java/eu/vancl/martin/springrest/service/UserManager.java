@@ -15,7 +15,7 @@ public interface UserManager {
     public List<User> findAll();
 
     public User findById(int id);
-
+    
     public User findByUserName(String username);
 
 }

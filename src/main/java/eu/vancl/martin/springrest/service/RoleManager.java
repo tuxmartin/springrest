@@ -16,7 +16,7 @@ public interface RoleManager {
     public List<Role> findAll();
 
     public Role findById(int id);
-
+    
     public Role findByName(String name);
 
 }

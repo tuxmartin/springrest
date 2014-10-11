@@ -13,11 +13,9 @@
 </div>
 
 <a href='<c:url value="/tajny" />'>Tajny controller</a>
-<br>
+<br />
 <a href='<c:url value="/tajny/admin" />'>Tajny controller - admin</a>
-<br>
-
-<p> Jmeno role 1: <strong>${role.name}</strong>. </p>
+<br />
 
 <div>
 	<table border="1">
@@ -31,10 +29,34 @@
 		<td><c:out value="${role.id}" /></td>
 		<td><c:out value="${role.name}" /></td>
 		<td>
-			<a href='<c:url value="/role/getById/${role.id}" />'>JSON</a>
+			<a href='<c:url value="/roles/${role.id}" />'>JSON</a>
 		</td>
 	</tr>
 	</c:forEach>	
 	</table>
-	<a href='<c:url value="/role/all" />'>JSON vsech roli</a>
+	<a href='<c:url value="/roles" />'>JSON vsech roli</a>
+</div>
+
+<br />
+
+<div>
+	<table border="1">
+	<tr>
+		<th>id</th>
+		<th>Jmeno</th>
+		<th>Role</th>
+		<th>JSON</th>
+	</tr>
+	<c:forEach var="user" items="${vsichniUzivatele}">
+	<tr>
+		<td><c:out value="${user.id}" /></td>
+		<td><c:out value="${user.username}" /></td>
+		<td><c:out value="${user.role.name}" /></td>
+		<td>
+			<a href='<c:url value="/users/${user.id}" />'>JSON</a>
+		</td>
+	</tr>
+	</c:forEach>	
+	</table>
+	<a href='<c:url value="/users" />'>JSON vsech uzivatelu</a>
 </div>

@@ -31,11 +31,24 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		/* pro testovani */
+		if (roleManager.findByName("Role 1") == null) {
+			Role r1 = new Role();
+			r1.setName("Role 1");
+			roleManager.save(r1);
+		}
+		
+		if (roleManager.findByName("Role 2") == null) {
+			Role r2 = new Role();
+			r2.setName("Role 2");
+			roleManager.save(r2);
+		}	
+		
 		if (userManager.findByUserName("admin@example.net") == null) {
 			User admin = new User();
 			admin.setUsername("admin@example.net");
 			admin.setPassword("8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"); // 123456
 			admin.setEnabled(true);
+			admin.setRole(roleManager.findByName("Role 1"));
 			userManager.save(admin);
 			logger.info("admin user created: " + admin.toString());
 		}
@@ -45,18 +58,15 @@ public class HomeController {
 			user.setUsername("user");
 			user.setPassword("123456"); // 123456
 			user.setEnabled(true);
+			user.setRole(roleManager.findByName("Role 2"));
 			userManager.save(user);
 			logger.info("normal user created: " + user.toString());
-		}	
-
-		Role r = roleManager.findById(1);
-		if (r != null) {
-			logger.info("___" + r.getName());	
-			model.addAttribute("role", r);
-		}	
+		}				
 		/* pro testovani */
 
 		model.addAttribute("vsechnyRole", roleManager.findAll());
+		
+		model.addAttribute("vsichniUzivatele", userManager.findAll());
 				
 		return "home";
 	}

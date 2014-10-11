@@ -18,7 +18,8 @@ public class Role implements Serializable {
 	@Column(name="name")
 	private String name;
 	
-	@OneToMany(mappedBy = "role")
+	@OneToMany(mappedBy = "role", fetch=FetchType.EAGER)
+	// s LAZY to pada na "HTTP Status 500 - Could not write JSON: failed to lazily initialize a collection of role: "
 	private List<User> uzivatele;
 
 	public Role() {

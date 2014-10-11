@@ -17,13 +17,24 @@ import eu.vancl.martin.springrest.entity.Role;
 import eu.vancl.martin.springrest.service.RoleManager;
 
 @RestController // http://goo.gl/Lo974a
-@RequestMapping("/role")
-public class JSONController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(JSONController.class);
+@RequestMapping("/roles")
+public class RestRoleController {
+	private static final Logger logger = LoggerFactory.getLogger(RestRoleController.class);
 	
 	@Autowired
 	private RoleManager roleManager;
+	
+	/**
+	 * Vrati JSON se vsemi rolemi.
+	 * Test:
+	 * 	http://localhost:8080/springrest/role/all
+	 * 	$ curl http://localhost:8080/springrest/role/all
+	 */
+	@ResponseBody
+	@RequestMapping(value="", method = RequestMethod.GET)
+	public List<Role> getAllRoles() {
+		return roleManager.findAll();		
+	}
 
 	/**
 	 * Vrati JSON pro pozadovanou roli. Zadava se ID role.
@@ -32,17 +43,9 @@ public class JSONController {
 	 * 	http://localhost:8080/springrest/role/getById/1
 	 * 	$ curl http://localhost:8080/springrest/role/getById/1
 	 */
-	@RequestMapping(value="/getById/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public @ResponseBody Role getRoleById(@PathVariable int id) {
-		logger.info("_ID_ " + id);
-		
-		/* // Pokud neni db, zakomentovat return dole a odkomentovat: 
-		Role r = new Role();
-		r.setId(123);
-		r.setName("XYZ");
-		return r;
-		*/
-		
+		logger.info("_ID_ " + id);		
 		return roleManager.findById(id);
 	}
 	
@@ -59,16 +62,4 @@ public class JSONController {
 		roleManager.save(input);		
 	}
 	
-	/**
-	 * Vrati JSON se vsemi rolemi.
-	 * Test:
-	 * 	http://localhost:8080/springrest/role/all
-	 * 	$ curl http://localhost:8080/springrest/role/all
-	 */
-	@ResponseBody
-	@RequestMapping(value="/all", method = RequestMethod.GET)
-	public List<Role> getAllRoles() {
-		return roleManager.findAll();		
-	}
-
 }

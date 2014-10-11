@@ -15,7 +15,7 @@ public interface RoleDao {
     public List<Role> findAll();
 
     public Role findById(int id);
-
+    
     public Role findByName(String name);
 
 }
