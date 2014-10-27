@@ -37,6 +37,7 @@ public class HomeController {
 			admin.setId(1);
 			admin.setName("ROLE_ADMIN");		
 			roleManager.save(admin);
+			logger.info("admin role created: " + admin.toString());
 		}
 		
 		if (roleManager.findByName("ROLE_USER") == null) {
@@ -44,6 +45,7 @@ public class HomeController {
 			user.setId(2);
 			user.setName("ROLE_USER");
 			roleManager.save(user);
+			logger.info("user role created: " + user.toString());
 		}
 		
 		if (userManager.findByUserName("admin@example.net") == null) {
