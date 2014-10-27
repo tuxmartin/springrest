@@ -42,6 +42,7 @@
 		
             <security:password-encoder hash="plaintext" /> <!-- SHA-256 -> V MySQL: SELECT SHA2('123456', 256)  -->
 		
+		<!-- 
             <security:jdbc-user-service data-source-ref="dataSource"
             	users-by-username-query="
 					SELECT username, password, enabled
@@ -52,7 +53,7 @@
 					FROM users u, roles r 
 					WHERE u.roles_id = r.id AND username=?"
 			/>
-			
+		-->
 			
 			<security:user-service>
 				<security:user name="testUSER"  password="123456" authorities="ROLE_USER" />

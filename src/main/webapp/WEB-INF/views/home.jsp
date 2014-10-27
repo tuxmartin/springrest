@@ -38,3 +38,29 @@
 	</table>
 	<a href='<c:url value="/role/all" />'>JSON vsech roli</a>
 </div>
+
+<br /><br />
+
+<div>
+	<table border="1">
+	<tr>
+		<th>id</th>
+		<th>Username</th>
+		<th>Password</th>
+		<th>enabled</th>
+		<th>JSON</th>
+	</tr>
+	<c:forEach var="user" items="${vsichniUzivatele}">
+	<tr>
+		<td><c:out value="${user.id}" /></td>
+		<td><c:out value="${user.username}" /></td>
+		<td><c:out value="${user.password}" /></td>
+		<td><c:out value="${user.enabled}" /></td>
+		<td>
+			<a href='<c:url value="/role/getById/${role.id}" />'>JSON</a>
+		</td>
+	</tr>
+	</c:forEach>	
+	</table>
+	<a href='<c:url value="/role/all" />'>JSON vsech uzivatelu</a>
+</div>

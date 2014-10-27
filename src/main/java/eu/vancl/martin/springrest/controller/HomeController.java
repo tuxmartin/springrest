@@ -73,6 +73,7 @@ public class HomeController {
 		/* pro testovani */
 
 		model.addAttribute("vsechnyRole", roleManager.findAll());
+		model.addAttribute("vsichniUzivatele", userManager.findAll());
 				
 		return "home";
 	}
