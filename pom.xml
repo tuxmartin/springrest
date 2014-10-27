@@ -101,6 +101,13 @@
 			<version>${jackson.version}</version>
 		</dependency>
 		<!-- Jackson JSON Mapper -->
+		<!-- JSON -->
+		<dependency>
+			<groupId>org.apache.clerezza.ext</groupId>
+			<artifactId>org.json.simple</artifactId>
+			<version>0.4</version>
+		</dependency>	
+		<!-- JSON -->
 
 		<!-- Apache Tiles -->
 		<dependency>

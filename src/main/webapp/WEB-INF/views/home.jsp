@@ -31,12 +31,12 @@
 		<td><c:out value="${role.id}" /></td>
 		<td><c:out value="${role.name}" /></td>
 		<td>
-			<a href='<c:url value="/role/getById/${role.id}" />'>JSON</a>
+			<a href='<c:url value="/roles/${role.id}" />'>JSON</a>
 		</td>
 	</tr>
 	</c:forEach>	
 	</table>
-	<a href='<c:url value="/role/all" />'>JSON vsech roli</a>
+	<a href='<c:url value="/roles" />'>JSON vsech roli</a>
 </div>
 
 <br /><br />
@@ -57,10 +57,10 @@
 		<td><c:out value="${user.password}" /></td>
 		<td><c:out value="${user.enabled}" /></td>
 		<td>
-			<a href='<c:url value="/role/getById/${role.id}" />'>JSON</a>
+			<a href='<c:url value="/api/v1/users/${user.id}" />'>JSON</a>
 		</td>
 	</tr>
 	</c:forEach>	
 	</table>
-	<a href='<c:url value="/role/all" />'>JSON vsech uzivatelu</a>
+	<a href='<c:url value="/api/v1/users" />'>JSON vsech uzivatelu</a>
 </div>
