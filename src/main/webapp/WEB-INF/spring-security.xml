@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+                           
+<security:http auto-config="true" use-expressions="true">
+	<security:intercept-url pattern="/login" access="permitAll" />
+        
+	<security:intercept-url pattern="/static/**" access="permitAll" />
+	<security:intercept-url pattern="/mmm/**" access="hasRole('ROLE_ADMIN')" />
+
+	<security:intercept-url pattern="/**" access="permitAll" />
+	
+	<security:form-login login-page="/login" authentication-failure-url="/loginfailed" />
+</security:http>
+
+<security:authentication-manager>
+	<security:authentication-provider>
+		
+		<security:password-encoder hash="plaintext" /> <!-- SHA-256 -> V MySQL: SELECT SHA2('123456', 256)  -->
+		
+			<!-- Overovani uzivatelu z DB: -->
+			<security:jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="
+					SELECT username, password, enabled
+					FROM Users 
+					WHERE username=?"
+				authorities-by-username-query="				
+					SELECT u.username, r.name AS authority
+					FROM users u, roles r 
+					WHERE u.roles_id = r.id AND username=?"
+			/>
+			
+			<!-- Overovani uzivatelu podle testovaciho nastaveni: -->
+			<!-- 
+			<security:user-service>
+				<security:user name="testUSER"  password="123456" authorities="ROLE_USER" />
+				<security:user name="testADMIN" password="123456" authorities="ROLE_ADMIN" />
+			</security:user-service>
+			-->			
+			
+			<!-- NENI MOZNE POUZIT OBE NATAVENI SOUCASNE, JINAK PRESTANE FUNGOVAT PRIHLASOVANI!!! -->			
+	</security:authentication-provider>
+</security:authentication-manager>
+	
+<security:global-method-security pre-post-annotations="enabled" />
+    
+ </beans>	                           
