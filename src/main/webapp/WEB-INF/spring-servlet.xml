@@ -42,7 +42,7 @@
 		
             <security:password-encoder hash="plaintext" /> <!-- SHA-256 -> V MySQL: SELECT SHA2('123456', 256)  -->
 		
-		<!-- 
+			<!-- Overovani uzivatelu z DB: -->
             <security:jdbc-user-service data-source-ref="dataSource"
             	users-by-username-query="
 					SELECT username, password, enabled
@@ -53,14 +53,16 @@
 					FROM users u, roles r 
 					WHERE u.roles_id = r.id AND username=?"
 			/>
-		-->
 			
+			<!-- Overovani uzivatelu podle testovaciho nastaveni: -->
+			<!-- 
 			<security:user-service>
 				<security:user name="testUSER"  password="123456" authorities="ROLE_USER" />
 				<security:user name="testADMIN" password="123456" authorities="ROLE_ADMIN" />
 			</security:user-service>
+			-->			
 			
-			
+			<!-- NENI MOZNE POUZIT OBE NATAVENI SOUCASNE, JINAK PRESTANE FUNGOVAT PRIHLASOVANI!!! -->			
         </security:authentication-provider>
     </security:authentication-manager>
 	
